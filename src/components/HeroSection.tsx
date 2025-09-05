@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Upload, Play, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-video-editing.jpg";
 
 export const HeroSection = () => {
+  const navigate = useNavigate();
   return (
     <section className="pt-24 pb-16 px-6">
       <div className="container mx-auto max-w-6xl">
@@ -24,7 +26,12 @@ export const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-            <Button variant="hero" size="lg" className="text-lg px-8 py-6">
+            <Button 
+              variant="hero" 
+              size="lg" 
+              className="text-lg px-8 py-6"
+              onClick={() => navigate('/auth')}
+            >
               <Upload className="w-5 h-5" />
               Upload Your Video
             </Button>
