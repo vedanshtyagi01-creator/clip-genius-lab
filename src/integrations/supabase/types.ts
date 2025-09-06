@@ -14,6 +14,56 @@ export type Database = {
   }
   public: {
     Tables: {
+      clips: {
+        Row: {
+          created_at: string
+          duration: number
+          end_time: number
+          file_path: string | null
+          id: string
+          start_time: number
+          status: string
+          title: string
+          updated_at: string
+          user_id: string
+          video_id: string
+        }
+        Insert: {
+          created_at?: string
+          duration: number
+          end_time: number
+          file_path?: string | null
+          id?: string
+          start_time: number
+          status?: string
+          title: string
+          updated_at?: string
+          user_id: string
+          video_id: string
+        }
+        Update: {
+          created_at?: string
+          duration?: number
+          end_time?: number
+          file_path?: string | null
+          id?: string
+          start_time?: number
+          status?: string
+          title?: string
+          updated_at?: string
+          user_id?: string
+          video_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "clips_video_id_fkey"
+            columns: ["video_id"]
+            isOneToOne: false
+            referencedRelation: "videos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -41,6 +91,45 @@ export type Database = {
         }
         Relationships: []
       }
+      subscribers: {
+        Row: {
+          clips_used_this_month: number | null
+          created_at: string
+          email: string
+          id: string
+          stripe_customer_id: string | null
+          subscribed: boolean
+          subscription_end: string | null
+          subscription_tier: string | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          clips_used_this_month?: number | null
+          created_at?: string
+          email: string
+          id?: string
+          stripe_customer_id?: string | null
+          subscribed?: boolean
+          subscription_end?: string | null
+          subscription_tier?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          clips_used_this_month?: number | null
+          created_at?: string
+          email?: string
+          id?: string
+          stripe_customer_id?: string | null
+          subscribed?: boolean
+          subscription_end?: string | null
+          subscription_tier?: string | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       videos: {
         Row: {
           created_at: string
@@ -51,8 +140,10 @@ export type Database = {
           id: string
           status: string
           title: string
+          transcript: Json | null
           updated_at: string
           user_id: string
+          youtube_url: string | null
         }
         Insert: {
           created_at?: string
@@ -63,8 +154,10 @@ export type Database = {
           id?: string
           status?: string
           title: string
+          transcript?: Json | null
           updated_at?: string
           user_id: string
+          youtube_url?: string | null
         }
         Update: {
           created_at?: string
@@ -75,8 +168,10 @@ export type Database = {
           id?: string
           status?: string
           title?: string
+          transcript?: Json | null
           updated_at?: string
           user_id?: string
+          youtube_url?: string | null
         }
         Relationships: []
       }
