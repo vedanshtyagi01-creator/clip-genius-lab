@@ -5,27 +5,27 @@ import { Upload, Brain, Scissors, Download, ArrowRight } from "lucide-react";
 const steps = [
   {
     icon: Upload,
-    title: "Upload Video",
-    description: "Drop your video file or paste a YouTube link",
-    detail: "Supports MP4, MOV, AVI formats up to 2GB"
+    title: "Upload or Link",
+    description: "Upload MP4/MOV files or paste any YouTube URL",
+    detail: "Supports files up to 500MB or any public YouTube video"
   },
   {
     icon: Brain,
-    title: "AI Analysis",
-    description: "Our AI identifies key moments and highlights",
-    detail: "Advanced scene detection and engagement scoring"
+    title: "AI Transcription",
+    description: "OpenAI Whisper transcribes with precise timestamps",
+    detail: "High-accuracy speech-to-text with word-level timing"
   },
   {
     icon: Scissors,
-    title: "Auto-Edit",
-    description: "Creates multiple short clips with captions",
-    detail: "30-60 second clips optimized for each platform"
+    title: "Auto Clipping",
+    description: "Smart segmentation into viral-ready clips",
+    detail: "30-60 second clips split at natural conversation breaks"
   },
   {
     icon: Download,
-    title: "Export & Share",
-    description: "Download or publish directly to social media",
-    detail: "One-click publishing to TikTok, IG, YouTube"
+    title: "Preview & Download",
+    description: "Review clips in dashboard and download favorites",
+    detail: "Instant preview with one-click download for each clip"
   }
 ];
 

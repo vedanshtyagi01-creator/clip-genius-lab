@@ -28,7 +28,7 @@ export const Navigation = () => {
             <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
               <Zap className="w-5 h-5 text-primary-foreground" />
             </div>
-            <span className="text-xl font-bold text-foreground">ClipMagic</span>
+            <span className="text-xl font-bold text-foreground">ClipGenius Lab</span>
           </div>
           
           <div className="hidden md:flex items-center gap-8">

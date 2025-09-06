@@ -14,51 +14,51 @@ import {
 const features = [
   {
     icon: Brain,
-    title: "AI Scene Detection",
-    description: "Our AI automatically identifies the most engaging moments in your videos",
+    title: "AI Transcription",
+    description: "OpenAI Whisper automatically transcribes your videos with precise timestamps",
     badge: "Smart AI"
   },
   {
     icon: Scissors,
-    title: "Auto-Editing",
-    description: "Cuts your content into perfect 30-60 second highlights automatically",
+    title: "Auto Clipping",
+    description: "Intelligently splits videos into 30-60 second clips at natural break points",
     badge: "Time Saver"
   },
   {
     icon: Type,
-    title: "Smart Captions",
-    description: "Auto-generate stylish subtitles that boost engagement and accessibility",
-    badge: "Engagement+"
+    title: "YouTube Integration",
+    description: "Simply paste a YouTube URL - no downloads required, we handle everything",
+    badge: "Easy Input"
   },
   {
     icon: Share2,
-    title: "Direct Publishing",
-    description: "Share directly to TikTok, Instagram Reels, and YouTube Shorts",
-    badge: "One-Click"
+    title: "Multiple Formats",
+    description: "Upload MP4, MOV files or process directly from YouTube links",
+    badge: "Flexible"
   },
   {
     icon: Clock,
-    title: "Batch Processing",
-    description: "Process multiple videos simultaneously to maximize your productivity",
-    badge: "Efficiency"
+    title: "Fast Processing",
+    description: "Transcription and clip generation completed in minutes, not hours",
+    badge: "Speed"
   },
   {
     icon: Target,
-    title: "Audience Targeting",
-    description: "Optimize clips for specific platforms and audience preferences",
+    title: "Smart Segmentation",
+    description: "AI identifies optimal clip boundaries based on speech patterns and pauses",
     badge: "Precision"
   },
   {
     icon: Wand2,
-    title: "Style Templates",
-    description: "Choose from trending templates and customize your brand aesthetic",
-    badge: "Creative"
+    title: "Subscription Plans",
+    description: "Free plan: 2 clips/month. Paid plan: unlimited clip generation",
+    badge: "Scalable"
   },
   {
     icon: Download,
-    title: "HD Export",
-    description: "Download your clips in high quality formats ready for any platform",
-    badge: "Quality"
+    title: "Instant Preview",
+    description: "Preview all clips in your dashboard and download the perfect ones",
+    badge: "Control"
   }
 ];
 

@@ -12,7 +12,7 @@ export const HeroSection = () => {
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 bg-card/50 backdrop-blur-sm border border-primary/20 rounded-full px-4 py-2 mb-6">
             <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-muted-foreground">AI-Powered Video Magic</span>
+            <span className="text-sm text-muted-foreground">AI-Powered Clip Generation</span>
           </div>
           
           <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-6">
@@ -46,7 +46,7 @@ export const HeroSection = () => {
           <div className="relative">
             <img 
               src={heroImage} 
-              alt="ClipMagic video editing interface"
+              alt="ClipGenius Lab video editing interface"
               className="w-full rounded-lg shadow-glow"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/20 to-transparent rounded-lg" />

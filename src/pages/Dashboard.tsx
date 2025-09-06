@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { VideoUpload } from "@/components/VideoUpload";
+import { UploadSection } from "@/components/UploadSection";
+import { VideoProcessing } from "@/components/VideoProcessing";
 import { useAuth } from "@/hooks/useAuth";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Zap, Video, LogOut, User } from "lucide-react";
+import { Zap, Video, LogOut, User, CreditCard } from "lucide-react";
 
 interface Video {
   id: string;
@@ -15,11 +16,21 @@ interface Video {
   file_path: string;
   status: string;
   created_at: string;
+  transcript?: any;
+  youtube_url?: string;
+}
+
+interface Subscription {
+  subscribed: boolean;
+  subscription_tier: string;
+  clips_used: number;
+  clips_limit: string | number;
 }
 
 const Dashboard = () => {
   const [videos, setVideos] = useState<Video[]>([]);
   const [loading, setLoading] = useState(true);
+  const [subscription, setSubscription] = useState<Subscription | null>(null);
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -30,6 +41,7 @@ const Dashboard = () => {
       return;
     }
     fetchVideos();
+    checkSubscription();
   }, [user, navigate]);
 
   const fetchVideos = async () => {
@@ -57,6 +69,18 @@ const Dashboard = () => {
     navigate("/");
   };
 
+  const checkSubscription = async () => {
+    try {
+      const { data, error } = await supabase.functions.invoke('check-subscription');
+      
+      if (error) throw error;
+      
+      setSubscription(data);
+    } catch (error: any) {
+      console.error('Error checking subscription:', error);
+    }
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString();
   };
@@ -75,10 +99,18 @@ const Dashboard = () => {
               <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
                 <Zap className="w-5 h-5 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold text-foreground">ClipMagic</span>
+              <span className="text-xl font-bold text-foreground">ClipGenius Lab</span>
             </div>
             
             <div className="flex items-center gap-4">
+              {subscription && (
+                <div className="flex items-center gap-2 text-muted-foreground">
+                  <CreditCard className="w-4 h-4" />
+                  <span className="text-sm">
+                    {subscription.subscription_tier} Plan: {subscription.clips_used}/{subscription.clips_limit} clips
+                  </span>
+                </div>
+              )}
               <div className="flex items-center gap-2 text-muted-foreground">
                 <User className="w-4 h-4" />
                 <span>{user.email}</span>
@@ -93,19 +125,19 @@ const Dashboard = () => {
       </nav>
 
       <div className="container mx-auto px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Upload Section */}
           <div className="lg:col-span-1">
-            <VideoUpload onUploadComplete={fetchVideos} />
+            <UploadSection onUploadComplete={fetchVideos} />
           </div>
 
-          {/* Videos Grid */}
-          <div className="lg:col-span-2">
+          {/* Video Processing */}
+          <div className="lg:col-span-3">
             <Card className="bg-card border-border">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-foreground">
                   <Video className="w-5 h-5" />
-                  Your Videos
+                  Your Videos & Clips
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -118,26 +150,7 @@ const Dashboard = () => {
                     No videos uploaded yet. Upload your first video to get started!
                   </div>
                 ) : (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {videos.map((video) => (
-                      <Card key={video.id} className="bg-muted/50 border-border">
-                        <CardContent className="p-4">
-                          <h3 className="font-semibold text-foreground mb-2">
-                            {video.title}
-                          </h3>
-                          {video.description && (
-                            <p className="text-sm text-muted-foreground mb-2">
-                              {video.description}
-                            </p>
-                          )}
-                          <div className="flex justify-between items-center text-xs text-muted-foreground">
-                            <span>Status: {video.status}</span>
-                            <span>{formatDate(video.created_at)}</span>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    ))}
-                  </div>
+                  <VideoProcessing videos={videos} onRefresh={fetchVideos} />
                 )}
               </CardContent>
             </Card>
